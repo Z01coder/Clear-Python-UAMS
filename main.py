@@ -47,14 +47,13 @@ class User:  # Класс User [1]
     def access_level(self, value):
         self._access_level = value
 
+
 class Admin(User):  # Класс Admin [6] дочерний класс "User"
     def __init__(self, id, name, access_level='admin'):  # Здесь дополнительный атрибут уровня доступа 'admin' [7]
         super().__init__(id, name, access_level=access_level)
 
     def add_user(self, new_user):  # Доп. метод для Админа [8] добавление сотрудника
-        if type(new_user) != User:
-            raise TypeError("New user must be of type User.")
+        self.users.append(new_user)
 
     def remove_user(self, user_to_remove):  # Доп. метод для Админа [9] удаление сотрудника
-        if type(user_to_remove) != User:
-            raise TypeError("User to remove must be of type User.")
+        self.users.remove(user_to_remove)
